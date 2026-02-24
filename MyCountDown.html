@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WoW: Midnight Early Access Countdown</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 200px;
+    color: black;
+    font-family: sans-serif;
+    text-align: center;
+
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: contain;
+
+    display: flex;
+    justify-content: center;
+    justify-content: center art;
+    align-items: center;
+    padding-top: 100px; /* adjust this */
+  }
+
+  h1 {
+    font-size: 3em;
+    text-shadow: 0 0 20px #cc0000;
+  }
+
+  .timer {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 0 0 15px #cc0000;
+  }
+</style>
+</head>
+<body>
+
+<h1>WoW: Midnight Early Access</h1>
+<p class="timer" id="countdown"></p>
+
+<script>
+  // SET YOUR EARLY ACCESS DATE HERE
+  const target = new Date("February 26, 2026 17:00:00 GMT-0600").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = target - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").textContent = "EARLY ACCESS IS LIVE!";
+      clearInterval(interval);
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").textContent =
+      days + "d " + hours + "h " + mins + "m " + secs + "s";
+  }
+
+  const interval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+</body>
+</html>
